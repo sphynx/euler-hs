@@ -18,7 +18,7 @@ primesUpTo n = sieve [2 .. n]
           | x * x < n  = x : sieve ((f x) xs)
           | otherwise  = x : xs
 
--- 51 seconds
+-- 51 seconds (6 seconds when compiled)
 -- main = print (primes !! 10000)
 
 -- 1.4 seconds
