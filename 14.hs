@@ -1,8 +1,6 @@
 module Main where
 
 import Control.Monad.State.Strict
-
-import Data.List
 import qualified Data.Map as M
 
 type MemoTable = M.Map Integer Integer
@@ -24,8 +22,7 @@ next x
   | otherwise  = 3 * x + 1
 
 main = do
-  let t = execState (mapM_ collatz [1 .. 1000000]) (M.singleton 1 1)
-  print . fst $ M.foldWithKey f (0, 0) t
-    where f k v (kmax, vmax)
-            | v > vmax  = (k, v)
-            | otherwise = (kmax, vmax)
+  let table = M.singleton 1 1
+  let filledTable = execState (mapM_ collatz [1 .. 1000000]) table
+  -- find maximum (value, key) with fold:
+  print . snd $ M.foldWithKey ((max .) . flip (,)) (0, 0) filledTable
