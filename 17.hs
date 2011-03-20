@@ -30,10 +30,10 @@ str 60 = "sixty"
 str 70 = "seventy"
 str 80 = "eighty"
 str 90 = "ninety"
-str 1000 = "one thousand"
+str 1000 = "onethousand"
 str n
-   | n > 20 && n < 100 = str (10 * (n `div` 10)) ++ "-" ++ str (n `mod` 10)
-   | n >= 100 && n `mod` 100 == 0 = str (n `div` 100) ++ " hundred"
-   | n > 100 && n < 1000 = str (n `div` 100) ++ " hundred and " ++ str (n `mod` 100)
+   | n > 20 && n < 100            = str (10 * (n `div` 10)) ++ str (n `mod` 10)
+   | n >= 100 && n `mod` 100 == 0 = str (n `div` 100) ++ "hundred"
+   | n > 100 && n < 1000          = str (n `div` 100) ++ "hundredand" ++ str (n `mod` 100)
 
-main = print . length . filter (\c -> c /= ' ' && c /= '-') . concatMap str $ [1..1000]
+main = print . length . concatMap str $ [1..1000]
