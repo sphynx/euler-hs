@@ -1,3 +1,9 @@
 *.exe
 *.hi
 *.o
+*.pdf
+*.ps
+*.prof
+*.hp
+*.aux
+*.png
