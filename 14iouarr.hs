@@ -1,3 +1,5 @@
+-- takes only 0.8 seconds on my machine!
+
 module Main where
 
 import Data.List (maximumBy)
