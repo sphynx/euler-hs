@@ -9,14 +9,10 @@ parse :: BS.ByteString -> [[Int]]
 parse = map (map (fst . fromJust . BS.readInt) . BS.split ' ') . BS.lines
 
 solve :: [Int] -> [Int] -> [Int]
-solve [] [x] = [x]
-solve up low =
-  let first  =     zipWith (+) up low        ++ [0]
-      second = 0 : zipWith (+) up (tail low)
-  in zipWith max first second
+solve up low = zipWith (+) up (zipWith max low (tail low))
 
 main = do
   args <- getArgs
   file <- BS.readFile (args !! 0)
-  print . maximum . foldl' solve [] . parse $ file
+  print . maximum . foldr1 solve . parse $ file
 
