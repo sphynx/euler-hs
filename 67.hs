@@ -1,0 +1,1 @@
+-- the same as 18.hs, but different data file ("67.txt")
